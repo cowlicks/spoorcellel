@@ -23,8 +23,9 @@ def test_int_index():
     assert 0 == data[(0, 0)]
     assert 13 == data[(40, 20)]
 
+@pytest.mark.xfail
 def test_slice_index():
-    pass
+    assert data[:5, 20] == 1
 
 @pytest.mark.xfail
 def test_has_key():
