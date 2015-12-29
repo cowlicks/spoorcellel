@@ -1,0 +1,27 @@
+package:
+  name: spoorcellel
+  version: 0.0.1
+
+source:
+  path: ../
+
+requirements:
+  build:
+    - python
+    - pip
+    - setuptools
+
+  run:
+    - python
+    - toolz
+    - numpy
+    - chest
+
+test:
+  requires:
+    - pytest
+
+about:
+  home: https://github.com/cowlicks/spoorcellel
+  summary: sparse, larger-than-memory, parallel matrices
+  license: BSD
