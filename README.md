@@ -19,3 +19,9 @@ If we slice a DOK we can use dask to move elements from one Chest into a new one
 
 We can use a "chunksize" here similiar to dask array.
 Each task should pull one "chunk" out of the chest and update the new one with it.
+
+# commonalities in formats
+
+COO and CSR/CSC each have three vector like things that store data.
+COO and CSR are similiar and useful.
+Implementing both of these would provide a nice first pass prototype.
