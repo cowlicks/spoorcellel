@@ -16,5 +16,7 @@ class COO:
 
     def toarray(self):
         out = np.zeros(self.shape)
-        out[self.row.compute(), self.col.compute()] = self.data.compute()
+        row = self.row.compute().astype(int)
+        col = self.col.compute().astype(int)
+        out[row, col] = self.data.compute()
         return out
