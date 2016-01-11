@@ -1,6 +1,14 @@
+import dask.array as da
 import numpy as np
 
 from .coo import COO
+
+def identity(n, chunks=(int(1e4),)):
+    nzs = da.ones(n, chunks=chunks)
+    nzi = da.arange(n + 1, chunks=chunks)
+    ci = da.arange(n, chunks=chunks)
+    shape = (n, n)
+    return CSR(nzs, nzi, ci, shape)
 
 class CSR:
     def __init__(self, nzs, nzi, ci, shape):
