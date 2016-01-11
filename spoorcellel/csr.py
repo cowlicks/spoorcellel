@@ -1,7 +1,9 @@
+import operator
 import dask.array as da
 import numpy as np
 
 from .coo import COO
+
 
 def identity(n, chunks=(int(1e4),)):
     nzs = da.ones(n, chunks=chunks)
@@ -9,6 +11,18 @@ def identity(n, chunks=(int(1e4),)):
     ci = da.arange(n, chunks=chunks)
     shape = (n, n)
     return CSR(nzs, nzi, ci, shape)
+
+
+def elemwise_on_nonzeros(self, op, other):
+    """
+    Elementwise operation that only effects nonzero values.  So op(0, other)
+    must be 0.
+    """
+    return self.__class__(op(self.nonzeros, other),
+                          self.nonzero_indices,
+                          self.column_indices,
+                          self.shape)
+
 
 class CSR:
     def __init__(self, nzs, nzi, ci, shape):
@@ -45,3 +59,6 @@ class CSR:
 
     def toarray(self):
         return self.tocoo().toarray()
+
+    def __mul__(self, other):
+        return elemwise_on_nonzeros(self, operator.mul, other)
