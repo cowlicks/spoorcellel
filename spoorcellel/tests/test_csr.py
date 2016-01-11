@@ -14,3 +14,9 @@ arr = csr.CSR(nzs, nzi, ci, shape)
 def test_toarray():
     expected = np.identity(5)
     np.testing.assert_array_equal(arr.toarray(), expected)
+
+
+def test_identity():
+    expected = np.identity(10)
+    a = csr.identity(10)
+    np.testing.assert_array_equal(a.toarray(), expected)
