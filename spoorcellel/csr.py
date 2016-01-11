@@ -18,6 +18,9 @@ def elemwise_on_nonzeros(self, op, other):
     Elementwise operation that only effects nonzero values.  So op(0, other)
     must be 0.
     """
+    if not np.isscalar(other):
+        raise NotImplementedError("No broadcisting yet")
+
     return self.__class__(op(self.nonzeros, other),
                           self.nonzero_indices,
                           self.column_indices,
