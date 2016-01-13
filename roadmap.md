@@ -45,3 +45,18 @@ In scipy sparse this is done in `_sparsetools.expandptr`
 
 Should it be the responsibility of the matrix constructor to create the dask.array?
 Or should the, caller of the constructor do this?
+
+# triggering computation
+
+Some functions trigger computation, like `CSR.tocoo`, should the user be informed about this?
+If so how?
+What are the circumstances where triggering computation is necessary?
+
+# metadata
+
+The arrays should pass around the same data that dask.arrays have pluse dtype.
+And possibly nnz.
+nnz should be optional, and default to one or something.
+If we were to add to spoorcellel arrays we don't know where the data overlaps without computing them.
+So we can't always know this.
+We would know the bounds of nnz. For addition it would be self.nnz +/- other.nnz
