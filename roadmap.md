@@ -40,3 +40,8 @@ Once this is done I can add some elementwise methods to csr.
 The nnz and column indices come for free.
 But we need to extract the row indices.
 In scipy sparse this is done in `_sparsetools.expandptr`
+
+# array creation
+
+Should it be the responsibility of the matrix constructor to create the dask.array?
+Or should the, caller of the constructor do this?
