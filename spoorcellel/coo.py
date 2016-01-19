@@ -20,3 +20,7 @@ class COO:
         col = self.col.compute().astype(int)
         out[row, col] = self.data.compute()
         return out
+
+    def tocsr(self):
+        nzs = self.data
+        nzi = da.zeros(len(self.data), chunks=(int(1e4)))
